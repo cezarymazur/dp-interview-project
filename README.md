@@ -1,4 +1,48 @@
-# Doctoralia Technical Test
+## Table of contents
+
+- [Technologies](#technologies)
+- [Live Project Presentation](#live-project-presentation)
+- [Sources](#sources)
+- [Setup](#setup)
+- [Initial Project Description](#initial-project-description)
+
+## Technologies
+
+Project is created with:
+
+- Vue3 Composition API
+- Vite
+- TypeScript (a little bit)
+- JavaScript ES6
+- TailwindCSS
+
+## Live Project Presentation
+
+![](./assets/working-project-ui-desktop.png)
+
+![](./assets/working-project-ui-mobile.png)
+
+![](./assets/working-project.gif)
+
+## Sources
+
+Project was created mainly based on few documentations such as:
+
+- [Vue3 Docs](https://vuejs.org/guide/introduction.html)
+- [JS mdn](https://developer.mozilla.org/en-US/)
+- [TailwindCSS Docs](https://tailwindcss.com/docs/installation)
+
+## Setup
+
+1. To run this project, clone repo, install it locally using npm and run witn npm run dev:
+2. Create new copy of .env file from .env.template for API urls
+
+```
+npm i
+npm run dev
+```
+
+## Initial Project Description
 
 Welcome onboard!
 
