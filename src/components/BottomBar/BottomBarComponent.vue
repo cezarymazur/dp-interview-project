@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DocplannerLogo from './icons/DocplannerLogo.vue'
+import DocplannerLogo from '@/components/Common/DocplannerLogo.vue'
 </script>
 
 <template>

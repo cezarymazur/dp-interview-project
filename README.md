@@ -12,6 +12,7 @@ Project is created with:
 
 - Vue3 Composition API
 - Vite
+- Pinia
 - TypeScript (a little bit)
 - JavaScript ES6
 - TailwindCSS
@@ -29,6 +30,7 @@ Project is created with:
 Project was created mainly based on few documentations such as:
 
 - [Vue3 Docs](https://vuejs.org/guide/introduction.html)
+- [Pinia Docs](https://pinia.vuejs.org/core-concepts/)
 - [JS mdn](https://developer.mozilla.org/en-US/)
 - [TailwindCSS Docs](https://tailwindcss.com/docs/installation)
 
@@ -40,6 +42,14 @@ Project was created mainly based on few documentations such as:
 ```
 npm i
 npm run dev
+```
+
+If any problems with installing Pinia check this issue: [NPM Error when installing pinia](https://github.com/vuejs/pinia/issues/853)
+
+and try run this command before npm install
+
+```
+npm install pinia --legacy-peer-deps
 ```
 
 ## Initial Project Description

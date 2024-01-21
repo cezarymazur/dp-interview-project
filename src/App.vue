@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import VisitChange from './components/VisitChange.vue'
-import BottomBar from './components/BottomBar.vue'
+import Default from './views/default.vue'
 </script>
 
 <template>
-	<VisitChange />
-	<BottomBar />
+	<Default />
 </template>

@@ -14,6 +14,7 @@
 	},
 	"dependencies": {
 		"dotenv-expand": "^10.0.0",
+		"pinia": "^2.1.7",
 		"swiper": "^11.0.5",
 		"vue": "^3.3.11"
 	},
