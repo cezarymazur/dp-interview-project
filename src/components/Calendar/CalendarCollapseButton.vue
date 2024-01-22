@@ -9,7 +9,7 @@ const seeMoreText = ref('See more hours')
 const seeLessText = ref('Less')
 
 function collapseCalendar() {
-	calendarStore.isCollapsed = !calendarStore.isCollapsed
+	calendarStore.collapse.calendar = !calendarStore.collapse.calendar
 }
 </script>
 
@@ -18,11 +18,11 @@ function collapseCalendar() {
 		@click="collapseCalendar()"
 		class="absolute flex justify-center bottom-0 left-0 right-0 border-t py-4 bg-white text-blue-600 font-regular rounded-b-xl z-10 cursor-pointer hover:underline"
 	>
-		<span v-if="calendarStore.isCollapsed">{{ seeMoreText }}</span>
+		<span v-if="calendarStore.collapse.calendar">{{ seeMoreText }}</span>
 		<span v-else>{{ seeLessText }}</span>
 		<Chevron
 			class="w-4 h-4 mt-1 ml-2 stroke-blue-600 transform"
-			:class="{ 'rotate-180': !calendarStore.isCollapsed }"
+			:class="{ 'rotate-180': !calendarStore.collapse.calendar }"
 		/>
 	</div>
 </template>

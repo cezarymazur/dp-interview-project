@@ -14,18 +14,18 @@ const swiperModules = [Navigation]
 const calendarStore = useCalendarStore()
 
 calendarStore.getAndProcessData().then(function () {
-	calendarStore.loadingSlots = false
+	calendarStore.loading.slots = false
 })
 </script>
 
 <template>
-	<Loading v-if="calendarStore.loadingSlots" class="text-blue-600" />
+	<Loading v-if="calendarStore.loading.slots" class="text-blue-600" />
 	<swiper
 		v-else
 		:slides-per-view="1"
 		:modules="swiperModules"
 		navigation
-		:class="{ 'max-h-[450px]': calendarStore.isCollapsed }"
+		:class="{ 'max-h-[450px]': calendarStore.collapse.calendar }"
 	>
 		<swiper-slide v-for="(week, index) in calendarStore.weeksData" :key="index">
 			<CalendarSingleWeek :data="week" />

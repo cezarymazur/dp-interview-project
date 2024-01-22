@@ -6,21 +6,24 @@ import { processData } from '@/services/processDataService'
 export const useCalendarStore = defineStore('CalendarStore', {
 	state: () => {
 		return {
-			slots: [],
 			weeksAmout: 6,
 			weeksData: [],
-			dateObject: {},
-			currentExactDate: 'Monday, 17 May 2021 at 11:00',
-			loadingSlots: true,
-			updateLoading: false,
-			confirmVisible: false,
-			isCollapsed: true,
+			dateObject: {
+				currentExactDate: 'Monday, 17 May 2021 at 11:00',
+			},
+			loading: {
+				slots: true,
+				update: false,
+			},
+			collapse: {
+				confirm: false,
+				calendar: true,
+			},
 		}
 	},
 	actions: {
 		async getAndProcessData() {
-			await this.fetchSlots(this.weeksAmout)
-			const rawCalendarData = this.slots
+			const rawCalendarData = await this.fetchSlots(this.weeksAmout)
 			this.weeksData = processData(rawCalendarData, this.weeksAmout)
 		},
 		async fetchSlots(weeksToFetch) {
@@ -42,20 +45,19 @@ export const useCalendarStore = defineStore('CalendarStore', {
 				const weekData = await getWeekData(weekDate)
 				dataArray.push(...weekData)
 			}
-
-			this.slots = dataArray
+			return dataArray
 		},
 		beforeUpdate(start, end, exact) {
-			this.confirmVisible = true
+			this.collapse.confirm = true
 			this.dateObject.Start = start
 			this.dateObject.End = end
 			this.dateObject.exactMeetingDate = exact
-			document.querySelector('#confirm')?.scrollIntoView({ behavior: 'smooth' })
+			this.scrollTo('#confirm')
 		},
 		async update(start, end, exact) {
-			this.updateLoading = true
-			this.confirmVisible = false
-			document.querySelector('#main')?.scrollIntoView({ behavior: 'smooth' })
+			this.loading.update = true
+			this.collapse.confirm = false
+			this.scrollTo('#main')
 			function prepareObject() {
 				return {
 					Start: start.replace('T', ' '),
@@ -71,14 +73,17 @@ export const useCalendarStore = defineStore('CalendarStore', {
 			}
 
 			await postData(prepareObject())
-			this.loadingSlots = true
-			this.isCollapsed = true
+			this.loading.slots = true
+			this.collapse.calendar = true
 			setTimeout(async () => {
 				await this.getAndProcessData()
-				this.loadingSlots = false
-				this.currentExactDate = exact
-				this.updateLoading = false
+				this.loading.slots = false
+				this.dateObject.currentExactDate = exact
+				this.loading.update = false
 			}, 1500)
+		},
+		scrollTo(selector) {
+			document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth' })
 		},
 	},
 })

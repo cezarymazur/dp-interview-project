@@ -18,11 +18,11 @@ const texts = {
 		</p>
 		<div class="w-full bg-white rounded-xl p-5 my-14 flex items-center gap-5 shadow-md">
 			<div class="relative h-10 w-10">
-				<Loading class="w-10 h-10 top-7 left-7 text-green-500" v-if="calendarStore.updateLoading" />
+				<Loading class="w-10 h-10 top-7 left-7 text-green-500" v-if="calendarStore.loading.update" />
 				<CalendarIcon class="w-10 h-10" v-else />
 			</div>
-			<div class="font-semibold text-lg" :class="{ 'line-through': calendarStore.updateLoading }">
-				On {{ calendarStore.currentExactDate }}
+			<div class="font-semibold text-lg" :class="{ 'line-through': calendarStore.loading.update }">
+				On {{ calendarStore.dateObject.currentExactDate }}
 			</div>
 		</div>
 	</div>
