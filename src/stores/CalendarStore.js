@@ -7,6 +7,7 @@ export const useCalendarStore = defineStore('CalendarStore', {
 	state: () => {
 		return {
 			slots: [],
+			//Put number of weeks you want to see in the calendar
 			weeksAmout: 6,
 			dateObject: {
 				currentExactDate: 'Monday, 17 May 2021 at 11:00',
