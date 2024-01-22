@@ -6,8 +6,8 @@ import { processData } from '@/services/processDataService'
 export const useCalendarStore = defineStore('CalendarStore', {
 	state: () => {
 		return {
+			slots: [],
 			weeksAmout: 6,
-			weeksData: [],
 			dateObject: {
 				currentExactDate: 'Monday, 17 May 2021 at 11:00',
 			},
@@ -21,11 +21,12 @@ export const useCalendarStore = defineStore('CalendarStore', {
 			},
 		}
 	},
-	actions: {
-		async getAndProcessData() {
-			const rawCalendarData = await this.fetchSlots(this.weeksAmout)
-			this.weeksData = processData(rawCalendarData, this.weeksAmout)
+	getters: {
+		weeks() {
+			return processData(this.slots, this.weeksAmout)
 		},
+	},
+	actions: {
 		async fetchSlots(weeksToFetch) {
 			const dataArray = []
 			function createApiLastPart(d) {
@@ -45,7 +46,7 @@ export const useCalendarStore = defineStore('CalendarStore', {
 				const weekData = await getWeekData(weekDate)
 				dataArray.push(...weekData)
 			}
-			return dataArray
+			this.slots = dataArray
 		},
 		beforeUpdate(start, end, exact) {
 			this.collapse.confirm = true
@@ -76,7 +77,7 @@ export const useCalendarStore = defineStore('CalendarStore', {
 			this.loading.slots = true
 			this.collapse.calendar = true
 			setTimeout(async () => {
-				await this.getAndProcessData()
+				await this.fetchSlots(this.weeksAmout)
 				this.loading.slots = false
 				this.dateObject.currentExactDate = exact
 				this.loading.update = false

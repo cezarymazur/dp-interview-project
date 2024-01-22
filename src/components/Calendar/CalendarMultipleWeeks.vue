@@ -13,7 +13,7 @@ import 'swiper/css/scrollbar'
 const swiperModules = [Navigation]
 const calendarStore = useCalendarStore()
 
-calendarStore.getAndProcessData().then(function () {
+calendarStore.fetchSlots(calendarStore.weeksAmout).then(function () {
 	calendarStore.loading.slots = false
 })
 </script>
@@ -27,7 +27,7 @@ calendarStore.getAndProcessData().then(function () {
 		navigation
 		:class="{ 'max-h-[450px]': calendarStore.collapse.calendar }"
 	>
-		<swiper-slide v-for="(week, index) in calendarStore.weeksData" :key="index">
+		<swiper-slide v-for="(week, index) in calendarStore.weeks" :key="index">
 			<CalendarSingleWeek :data="week" />
 		</swiper-slide>
 	</swiper>
