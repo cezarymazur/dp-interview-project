@@ -10,9 +10,8 @@
 
 Project is created with:
 
-- Vue3 Composition API
+- Vue3 (Composition API + Pinia)
 - Vite
-- Pinia
 - TypeScript (a little bit)
 - JavaScript ES6
 - TailwindCSS
